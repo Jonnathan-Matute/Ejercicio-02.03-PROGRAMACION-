@@ -21,61 +21,65 @@ public class EventoVentanaGrupo implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(this.vGrupo.getbGuardar())) {
-
+        if (e.getSource().equals(this.vGrupo.getbGuardar())) {//INICIO IF
             try {
-                String nom = this.vGrupo.getTxtList().get(0).getText();
-                String numEs = this.vGrupo.getTxtList().get(1).getText();
-                String numMa = this.vGrupo.getTxtList().get(2).getText();
-                int comboCarrera = this.vGrupo.getComboBox().getSelectedIndex();
+                try {
+                    String nom = this.vGrupo.getTxtList().get(0).getText();
+                    String numEs = this.vGrupo.getTxtList().get(1).getText();
+                    String numMa = this.vGrupo.getTxtList().get(2).getText();
+                    int comboCarrera = this.vGrupo.getComboBox().getSelectedIndex();
 
-                if (nom.isEmpty() && numEs.isEmpty() && numMa.isEmpty() ) {
-                    JOptionPane.showMessageDialog(vGrupo, "Todos los parámetros estan vacíos", "Empty Parameter", JOptionPane.NO_OPTION);
-                } else if (nom.isEmpty()) {
-                    JOptionPane.showMessageDialog(vGrupo, "El parámetro  esrá vacío", "Empty Parameter", JOptionPane.NO_OPTION);
-                } else if (numEs.isEmpty()) {
-                    JOptionPane.showMessageDialog(vGrupo, "El parámetro  está vacío", "Empty Parameter", JOptionPane.NO_OPTION);
-               } else if (numMa.isEmpty()) {
-                    JOptionPane.showMessageDialog(vGrupo, "El parámetro  está vacío", "Empty Parameter", JOptionPane.NO_OPTION);
-                } else {//INICIO ELSE
+                    if (nom.isEmpty() && numEs.isEmpty() && numMa.isEmpty()) {
+                        JOptionPane.showInternalMessageDialog(vGrupo, "Todos los parámetros estan vacíos", "Empty Parameter", JOptionPane.NO_OPTION);
+                    } else if (nom.isEmpty()) {
+                        JOptionPane.showInternalMessageDialog(vGrupo, "El parámetro Nombre Grupo esrá vacío", "Empty Parameter", JOptionPane.NO_OPTION);
+                    } else if (numEs.isEmpty()) {
+                        JOptionPane.showInternalMessageDialog(vGrupo, "El parámetro Numero Estudiantes está vacío", "Empty Parameter", JOptionPane.NO_OPTION);
+                    } else if (numMa.isEmpty()) {
+                        JOptionPane.showInternalMessageDialog(vGrupo, "El parámetro Numero Materias está vacío", "Empty Parameter", JOptionPane.NO_OPTION);
+                    } else {//INICIO ELSE
 
-                    int numEstudiantes = Integer.parseInt(numEs);
-                    int numMaterias = Integer.parseInt(numMa);
+                        int numEstudiantes = Integer.parseInt(numEs);
+                        int numMaterias = Integer.parseInt(numMa);
 
-                    int a = 0;
-                    boolean cent = true;
-                    for (Grupo gr : this.vGrupo.getGd().getGrupoList()) {
-                        if (nom.compareTo(this.vGrupo.getGd().getGrupoList().get(a).getNombre()) == 0) {
-                            JOptionPane.showMessageDialog(vGrupo, "Ya se encuentra este dato en nuestra base de datos", "Parámetro Repetido", JOptionPane.ERROR_MESSAGE);
-                            cent = false;
-                            break;
-                        } else {
-                            cent = true;
+                        int a = 0;
+                        boolean cent = true;
+                        for (Grupo gr : this.vGrupo.getGd().getGrupoList()) {
+                            if (nom.compareTo(this.vGrupo.getGd().getGrupoList().get(a).getNombre()) == 0) {
+                                JOptionPane.showInternalMessageDialog(vGrupo, "Ya se encuentra este dato en nuestra base de datos", "Parámetro Repetido", JOptionPane.ERROR_MESSAGE);
+                                cent = false;
+                                break;
+                            } else {
+                                cent = true;
+                            }
+                            a++;
                         }
-                        a++;
-                    }
 
-                    if (cent == true) {//INICIO IF
-                        this.vGrupo.getGd().addGrupo(new Grupo(nom,numEstudiantes,numMaterias, this.vGrupo.getGd().getCarreraList().get(comboCarrera)));
-                        this.vGrupo.getModeloTabla().setDataVector(this.cargaGrupo(this.vGrupo.getGd().getGrupoList().size(), 4), this.vGrupo.getEncabezado());
-                    }//FIN IF
-                }//FIN ELSE
+                        if (cent == true) {//INICIO IF
+                            this.vGrupo.getGd().addGrupo(new Grupo(nom, numEstudiantes, numMaterias, this.vGrupo.getGd().getCarreraList().get(comboCarrera)));
+                            this.vGrupo.getModeloTabla().setDataVector(this.cargaGrupo(this.vGrupo.getGd().getGrupoList().size(), 4), this.vGrupo.getEncabezado());
+                        }//FIN IF
+                    }//FIN ELSE
 
-            } catch (NumberFormatException error) {
+                } catch (NumberFormatException error) {
 
-                JOptionPane.showMessageDialog(vGrupo, "Ingresar solo números en el parámetro ", "NumberFormatException", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showInternalMessageDialog(vGrupo, "Ingresar solo números en los parámetros Numero Estudiantes o Numero Materias ", "NumberFormatException", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+                this.vGrupo.getTxtList().get(0).setText("");
+                this.vGrupo.getTxtList().get(1).setText("");
+                this.vGrupo.getTxtList().get(2).setText("");
+                this.vGrupo.getComboBox().setSelectedIndex(-1);
+                
+            } catch (ArrayIndexOutOfBoundsException err) {
+                JOptionPane.showInternalMessageDialog(vGrupo, "El parámetro Carrera está vacío. Ingrese una carrera desde la ventana Nueva Carrera", "NumberFormatException", JOptionPane.ERROR_MESSAGE);
 
             }
-
-            this.vGrupo.getTxtList().get(0).setText("");
-            this.vGrupo.getTxtList().get(1).setText("");
-            this.vGrupo.getTxtList().get(2).setText("");
-            this.vGrupo.getComboBox().setSelectedIndex(-1);
-
-        }
-         if (e.getSource().equals(this.vGrupo.getbGenerar())) {
+        }//FIN IF
+        if (e.getSource().equals(this.vGrupo.getbGenerar())) {
             this.vGrupo.getGd().persistirArchivoGrupo(this.vGrupo.getGd().getGrupoList());
-      }
+        }
     }
 
     public Object[][] cargaGrupo(int f, int c) {
