@@ -39,7 +39,7 @@ public class VentanaMateria extends JInternalFrame {
 
     public VentanaMateria(String title, boolean resizable, boolean closable, boolean maximizable, boolean iconifiable, GestionDato gd) {
         super(title, resizable, closable, maximizable, iconifiable);
-        this.setBounds(440, 0, 350, 300);
+        this.setBounds(220, 330, 350, 300);
         this.gd = gd;
         this.setVisible(true);
         this.iniciaComponentes();

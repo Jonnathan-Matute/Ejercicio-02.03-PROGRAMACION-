@@ -89,9 +89,9 @@ public class GestionDato {
         return retorno;
     }
 
-    public boolean persistirArchivoCarrera(List<Carrera> lista) {
-
-        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo DatosCarrera");
+    public boolean persistirArchivoCarrera(List<Carrera> lista) {//INICIO METODO PERSISTIR ARCHIVO CARRERA
+        boolean retorno = false;
+        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo DatosCarrera", "C:/");
         this.directorio = directorio;
 
         FileOutputStream fos = null;
@@ -99,7 +99,6 @@ public class GestionDato {
         int n;
 
         try {
-            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo Binario DatosCarrera en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
             fos = new FileOutputStream(this.directorio + "/DatosCarrera.dat", true);
             salida = new DataOutputStream(fos);
             for (Carrera c : this.carreraList) {
@@ -107,16 +106,22 @@ public class GestionDato {
                 salida.close();
             }
 
-            return true;
+            retorno = true;
         } catch (IOException e1) {
-            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio esta creado ", "Listo", JOptionPane.CLOSED_OPTION);
-            return false;
+            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio especificado NO Existe", "Error", JOptionPane.ERROR_MESSAGE);
+            retorno = false;
         }
-    }
 
-    public boolean persistirArchivoGrupo(List<Grupo> lista) {
+        if (retorno == true) {
+            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo Binario DatosCarrera en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
 
-        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosGrupo");
+        }
+        return retorno;
+    }//FIN METODO PERSISTIR ARCHIVO CARRERA
+
+    public boolean persistirArchivoGrupo(List<Grupo> lista) {//INICIO METODO PERSISTIR ARCHIVO GRUPO
+        boolean retorno = false;
+        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosGrupo", "C:/");
         this.directorio = directorio;
 
         FileOutputStream fos = null;
@@ -124,23 +129,30 @@ public class GestionDato {
         int n;
 
         try {
-            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosGrupo en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
             fos = new FileOutputStream(this.directorio + "/DatosGrupo.dat", true);
             salida = new DataOutputStream(fos);
             for (Grupo g : this.grupoList) {
                 salida.writeUTF(g.getNombre() + " | ");
                 salida.close();
             }
-            return true;
+            retorno = true;
         } catch (IOException e1) {
-            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio esta creado ", "Listo", JOptionPane.CLOSED_OPTION);
-            return false;
+            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio especificado NO Existe", "Error", JOptionPane.ERROR_MESSAGE);
+            retorno = false;
         }
-    }
 
-    public boolean persistirArchivoMateria(List<Materia> lista) {
+        if (retorno == true) {
+            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosGrupo en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
+        }
 
-        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosMateria");
+        return retorno;
+    }//FIN METODO PERSISTIR ARCHIVO GRUPO
+
+    public boolean persistirArchivoMateria(List<Materia> lista) {//INICIO METODO PERSISTIR ARCHIVO MATERIA
+
+        boolean retorno = true;
+
+        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosMateria", "C:/");
         this.directorio = directorio;
 
         FileOutputStream fos = null;
@@ -148,18 +160,23 @@ public class GestionDato {
         int n;
 
         try {
-            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosMateria en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
             fos = new FileOutputStream(this.directorio + "/DatosMateria.dat", true);
             salida = new DataOutputStream(fos);
             for (Materia m : this.materiaList) {
                 salida.writeUTF("NOMBRE: " + m.getNombre() + " | DOCENTE: " + m.getNomDocente() + " | NOMBRE GRUPO" + m.getNomGrupo());
                 salida.close();
             }
-            return true;
+            retorno = true;
         } catch (IOException e1) {
-            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio esta creado ", "Listo", JOptionPane.CLOSED_OPTION);
-            return false;
+            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio especificado NO Existe", "Error", JOptionPane.ERROR_MESSAGE);
+            retorno = false;
         }
-    }
+        if (retorno == true) {
+            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosMateria en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
+
+        }
+        
+        return retorno;
+    }//FIN METODO PERSISTIR ARCHIVO MATERIA
 
 }

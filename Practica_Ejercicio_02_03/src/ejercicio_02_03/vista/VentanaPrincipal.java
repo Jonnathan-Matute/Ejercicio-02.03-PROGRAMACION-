@@ -2,6 +2,7 @@ package ejercicio_02_03.vista;
 
 import ejercicio_02_03.controlador.EventoVentanaPrincipal;
 import ejercicio_02_03.controlador.GestionDato;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -28,7 +29,8 @@ public class VentanaPrincipal extends JFrame{
     
     public VentanaPrincipal(String title, GestionDato gd){
         super(title);
-        this.setSize(820, 720);
+        this.setSize(820, 710);
+        this.setLocationRelativeTo(this);
         this.setDefaultCloseOperation(3);
         this.gd = gd;
         this.iniciaComponentes();
@@ -37,6 +39,7 @@ public class VentanaPrincipal extends JFrame{
     public void iniciaComponentes(){
         
         this.escritorio = new JDesktopPane();
+        this.escritorio.setBackground(Color.lightGray);
         this.barraMenu = new JMenuBar();
         
         this.menuList = new ArrayList();

@@ -36,7 +36,7 @@ public class VentanaCarrera extends JInternalFrame {
 
     public VentanaCarrera(String title, boolean resizable, boolean closable, boolean maximizable, boolean iconifiable, GestionDato gd) {
         super(title, resizable, closable, maximizable, iconifiable);
-        this.setBounds(440, 0, 350, 300);
+        this.setBounds(0, 0, 350, 300);
         this.gd = gd;
         this.setVisible(true);
         this.iniciaComponentes();
