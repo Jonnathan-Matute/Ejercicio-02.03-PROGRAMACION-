@@ -98,7 +98,7 @@ public class GestionDato {
 
         try {
             JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo Binario DatosCarrera en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
-            fos = new FileOutputStream(this.directorio + "/DatosCarrera.txt", true);
+            fos = new FileOutputStream(this.directorio + "/DatosCarrera.dat", true);
             salida = new DataOutputStream(fos);
             for (Carrera c : this.carreraList) {   
             salida.writeUTF(c.getNombre() + " | " + c.getNomDirec() + " | " + c.getCapacidad());
@@ -123,7 +123,7 @@ public class GestionDato {
         
         try {
             JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosGrupo en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
-            fos = new FileOutputStream(this.directorio + "/DatosGrupo.txt", true);
+            fos = new FileOutputStream(this.directorio + "/DatosGrupo.dat", true);
             salida = new DataOutputStream(fos);
             for (Grupo g : this.grupoList) {   
             salida.writeUTF(g.getNombre() + " | " );
