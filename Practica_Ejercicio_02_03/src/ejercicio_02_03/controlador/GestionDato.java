@@ -9,12 +9,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrador
  */
 public class GestionDato {
-    
+
     private List<Carrera> carreraList;
     private List<Grupo> grupoList;
     private List<Materia> materiaList;
@@ -28,14 +29,15 @@ public class GestionDato {
         this.materiaList = materiaList;
     }
 
-
     public boolean addCarrera(Carrera c) {
         return this.carreraList.add(c);
     }
-   public boolean addGrupo(Grupo g) {
+
+    public boolean addGrupo(Grupo g) {
         return this.grupoList.add(g);
     }
-   public boolean addMateria(Materia m) {
+
+    public boolean addMateria(Materia m) {
         return this.materiaList.add(m);
     }
 
@@ -62,7 +64,7 @@ public class GestionDato {
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
     }
-  
+
     public Carrera buscarCarrera(String txt) {
         Carrera retorno = null;
         int i = 0;
@@ -100,9 +102,9 @@ public class GestionDato {
             JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo Binario DatosCarrera en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
             fos = new FileOutputStream(this.directorio + "/DatosCarrera.dat", true);
             salida = new DataOutputStream(fos);
-            for (Carrera c : this.carreraList) {   
-            salida.writeUTF(c.getNombre() + " | " + c.getNomDirec() + " | " + c.getCapacidad());
-            salida.close();
+            for (Carrera c : this.carreraList) {
+                salida.writeUTF(c.getNombre() + " | " + c.getNomDirec() + " | " + c.getCapacidad());
+                salida.close();
             }
 
             return true;
@@ -111,8 +113,8 @@ public class GestionDato {
             return false;
         }
     }
-    
-        public boolean persistirArchivoGrupo(List<Grupo> lista) {
+
+    public boolean persistirArchivoGrupo(List<Grupo> lista) {
 
         String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosGrupo");
         this.directorio = directorio;
@@ -120,14 +122,38 @@ public class GestionDato {
         FileOutputStream fos = null;
         DataOutputStream salida = null;
         int n;
-        
+
         try {
             JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosGrupo en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
             fos = new FileOutputStream(this.directorio + "/DatosGrupo.dat", true);
             salida = new DataOutputStream(fos);
-            for (Grupo g : this.grupoList) {   
-            salida.writeUTF(g.getNombre() + " | " );
-            salida.close();
+            for (Grupo g : this.grupoList) {
+                salida.writeUTF(g.getNombre() + " | ");
+                salida.close();
+            }
+            return true;
+        } catch (IOException e1) {
+            JOptionPane.showMessageDialog(this.vPrincipal, "El Directorio esta creado ", "Listo", JOptionPane.CLOSED_OPTION);
+            return false;
+        }
+    }
+
+    public boolean persistirArchivoMateria(List<Materia> lista) {
+
+        String directorio = JOptionPane.showInputDialog(vPrincipal, "Ingresar el directorio donde se guardará el archivo binario DatosMateria");
+        this.directorio = directorio;
+
+        FileOutputStream fos = null;
+        DataOutputStream salida = null;
+        int n;
+
+        try {
+            JOptionPane.showMessageDialog(this.vPrincipal, "Se ha generado un archivo binario DatosMateria en: " + directorio, "Directorio", JOptionPane.PLAIN_MESSAGE);
+            fos = new FileOutputStream(this.directorio + "/DatosMateria.dat", true);
+            salida = new DataOutputStream(fos);
+            for (Materia m : this.materiaList) {
+                salida.writeUTF("NOMBRE: " + m.getNombre() + " | DOCENTE: " + m.getNomDocente() + " | NOMBRE GRUPO" + m.getNomGrupo());
+                salida.close();
             }
             return true;
         } catch (IOException e1) {

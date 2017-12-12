@@ -4,6 +4,8 @@ import ejercicio_02_03.controlador.EventoVentanaMateria;
 import ejercicio_02_03.controlador.GestionDato;
 import ejercicio_02_03.modelo.Grupo;
 import ejercicio_02_03.modelo.Materia;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class VentanaMateria extends JInternalFrame {
     private JPanel panel;
     private List<JLabel> lblList;
     private List<JTextField> txtList;
-    private JButton bGuardar;
+    private JButton bGuardar, bGenerar;
     private DefaultTableModel modeloTabla;
     private JScrollPane scroll;
     private JTable tabla;
@@ -44,7 +46,8 @@ public class VentanaMateria extends JInternalFrame {
     }
 
     public void iniciaComponentes() {
-        this.panel = new JPanel(new GridLayout(3,2 ));
+        this.panel = new JPanel(new BorderLayout(3,2 ));
+        JPanel pBotones = new JPanel(new BorderLayout());
         JPanel panelCampos = new JPanel(new GridLayout(3, 2));
 
         this.lblList = new ArrayList();
@@ -57,10 +60,14 @@ public class VentanaMateria extends JInternalFrame {
         this.txtList.add(new JTextField(15));
 
         this.bGuardar = new JButton("Guardar");
+        this.bGenerar = new JButton("Generar Archivo");
+        this.bGenerar.setBackground(Color.CYAN);
         
         this.comboBox = new JComboBox(this.CargaCombo());
 
         this.bGuardar.addActionListener(new EventoVentanaMateria(this));
+        this.bGenerar.addActionListener(new EventoVentanaMateria(this));
+        
         this.encabezado = new Object[3];
         this.encabezado[0] = "Nombre";
         this.encabezado[1] = "Docente";
@@ -79,8 +86,10 @@ public class VentanaMateria extends JInternalFrame {
         panelCampos.add(this.lblList.get(2));
         panelCampos.add(this.comboBox);
         
-        this.panel.add(panelCampos);
-        this.panel.add(this.bGuardar);
+        this.panel.add(panelCampos, BorderLayout.NORTH);
+        this.panel.add(pBotones, BorderLayout.SOUTH);
+        pBotones.add(this.bGuardar, BorderLayout.WEST);
+        pBotones.add(this.bGenerar, BorderLayout.EAST);
         this.panel.add(this.scroll);
         this.add(this.panel);
     }   
@@ -194,4 +203,14 @@ public class VentanaMateria extends JInternalFrame {
     public void setComboBox(JComboBox comboBox) {
         this.comboBox = comboBox;
     }   
+
+    public JButton getbGenerar() {
+        return bGenerar;
+    }
+
+    public void setbGenerar(JButton bGenerar) {
+        this.bGenerar = bGenerar;
+    }
+    
+    
 }

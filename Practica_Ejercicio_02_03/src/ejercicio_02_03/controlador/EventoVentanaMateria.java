@@ -47,7 +47,7 @@ public class EventoVentanaMateria implements ActionListener {
                     cont++;
                 }
                 if (cent == true) {
-                    this.vMateria.getGd().addMateria(new Materia(n,n2,this.vMateria.getGd().getGrupoList().get(cont)));
+                    this.vMateria.getGd().addMateria(new Materia(n, n2, this.vMateria.getGd().getGrupoList().get(cont)));
                     this.vMateria.getModeloTabla().setDataVector(this.cargaMateria(this.vMateria.getGd().getMateriaList().size(), 3), this.vMateria.getEncabezado());
                 }
             }
@@ -55,14 +55,18 @@ public class EventoVentanaMateria implements ActionListener {
             this.vMateria.getTxtList().get(1).setText("");
             this.vMateria.getComboBox().setSelectedItem(-1);
 
-      }
+        }
+
+        if (e.getSource().equals(this.vMateria.getbGenerar())) {
+            this.vMateria.getGd().persistirArchivoMateria(this.vMateria.getGd().getMateriaList());
+        }
 
     }
 
     public Object[][] cargaMateria(int f, int c) {
         Object[][] retorno = new Object[f][c];
         int i = 0;
-        for (Materia ma: this.vMateria.getGd().getMateriaList()) {
+        for (Materia ma : this.vMateria.getGd().getMateriaList()) {
             retorno[i][0] = ma.getNombre();
             retorno[i][1] = ma.getNomDocente();
             retorno[i][2] = ma.getNomGrupo().getNombre();
