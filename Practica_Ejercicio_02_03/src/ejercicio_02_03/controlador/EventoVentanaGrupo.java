@@ -71,13 +71,14 @@ public class EventoVentanaGrupo implements ActionListener {
                 this.vGrupo.getTxtList().get(1).setText("");
                 this.vGrupo.getTxtList().get(2).setText("");
                 this.vGrupo.getComboBox().setSelectedIndex(-1);
-                
+
             } catch (ArrayIndexOutOfBoundsException err) {
                 JOptionPane.showInternalMessageDialog(vGrupo, "El parámetro Carrera está vacío. Ingrese una carrera desde la ventana Nueva Carrera", "NumberFormatException", JOptionPane.ERROR_MESSAGE);
 
             }
         }//FIN IF
         if (e.getSource().equals(this.vGrupo.getbGenerar())) {
+            JOptionPane.showInternalMessageDialog(vGrupo, "Se debe escribir una direccion existente en disco local, ejemplo: C:/Windows", "Ojo!", JOptionPane.INFORMATION_MESSAGE);
             this.vGrupo.getGd().persistirArchivoGrupo(this.vGrupo.getGd().getGrupoList());
         }
     }

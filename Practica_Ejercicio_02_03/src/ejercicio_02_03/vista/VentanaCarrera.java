@@ -50,7 +50,7 @@ public class VentanaCarrera extends JInternalFrame {
         this.lblList = new ArrayList();
         this.lblList.add(new JLabel("Nombre:"));
         this.lblList.add(new JLabel("Director:"));
-        this.lblList.add(new JLabel("Capacidad:"));
+        this.lblList.add(new JLabel("Cupos:"));
 
         this.txtList = new ArrayList();
         this.txtList.add(new JTextField(15));
@@ -65,7 +65,7 @@ public class VentanaCarrera extends JInternalFrame {
         this.encabezado = new Object[3];
         this.encabezado[0] = "Nombre";
         this.encabezado[1] = "Director";
-        this.encabezado[2] = "Capacidad";
+        this.encabezado[2] = "Cupos";
 
         this.datos = this.cargaCarrera(this.gd.getCarreraList().size(),3);
 

@@ -72,7 +72,7 @@ public class EventoVentanaCarrera implements ActionListener {
         }//FIN IF
 
         if (e.getSource().equals(this.vCarrera.getbGenerar())) {
-
+JOptionPane.showInternalMessageDialog(vCarrera, "Se debe escribir una direccion existente en disco local, ejemplo: C:/Windows", "Ojo!" , JOptionPane.INFORMATION_MESSAGE);
             this.vCarrera.getGd().persistirArchivoCarrera(this.vCarrera.getGd().getCarreraList());
 
         }
