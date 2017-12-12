@@ -26,14 +26,13 @@ public class VentanaCarrera extends JInternalFrame {
     private JPanel panel;
     private List<JLabel> lblList;
     private List<JTextField> txtList;
-    private JButton bGuardar;
+    private JButton bGuardar, bGenerar;
     private DefaultTableModel modeloTabla;
     private JScrollPane scroll;
     private JTable tabla;
     private Object[] encabezado;
     private Object[][] datos;
     private GestionDato gd;
-    private JButton bGenerar;
 
     public VentanaCarrera(String title, boolean resizable, boolean closable, boolean maximizable, boolean iconifiable, GestionDato gd) {
         super(title, resizable, closable, maximizable, iconifiable);
@@ -44,7 +43,7 @@ public class VentanaCarrera extends JInternalFrame {
     }
 
     public void iniciaComponentes() {
-        this.panel = new JPanel(new GridLayout(3,2));
+        this.panel = new JPanel(new BorderLayout(3,2));
         JPanel pBotones = new JPanel(new BorderLayout());
         JPanel panelCampos = new JPanel(new GridLayout(3, 2));
 

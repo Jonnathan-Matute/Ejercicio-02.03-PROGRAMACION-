@@ -28,7 +28,7 @@ public class VentanaGrupo extends JInternalFrame {
     private JPanel panel;
     private List<JLabel> lblList;
     private List<JTextField> txtList;
-    private JButton bGuardar;
+    private JButton bGuardar, bGenerar;
     private DefaultTableModel modeloTabla;
     private JScrollPane scroll;
     private JTable tabla;
@@ -36,7 +36,6 @@ public class VentanaGrupo extends JInternalFrame {
     private Object[][] datos;
     private GestionDato gd;
     private JComboBox comboBox;
-    private JButton bGenerar;
 
     public VentanaGrupo(String title, boolean resizable, boolean closable, boolean maximizable, boolean iconifiable, GestionDato gd) {
         super(title, resizable, closable, maximizable, iconifiable);
@@ -47,15 +46,15 @@ public class VentanaGrupo extends JInternalFrame {
     }
 
     public void iniciaComponentes() {
-        this.panel = new JPanel(new GridLayout(4,2 ));
+        this.panel = new JPanel(new BorderLayout(4,2 ));
         JPanel pBotones = new JPanel(new BorderLayout());
         JPanel panelCampos = new JPanel(new GridLayout(4, 2));
 
         this.lblList = new ArrayList();
-        this.lblList.add(new JLabel("Nombre GRUPO:"));
-        this.lblList.add(new JLabel("Numero ESTUDIANTES:"));
-        this.lblList.add(new JLabel("Numero MATERIAS:"));
-        this.lblList.add(new JLabel("Nombre CARRERA"));
+        this.lblList.add(new JLabel("Nombre grupo:"));
+        this.lblList.add(new JLabel("Numero Estudiantes:"));
+        this.lblList.add(new JLabel("Numero Materias:"));
+        this.lblList.add(new JLabel("Carrera"));
 
         this.txtList = new ArrayList();
         this.txtList.add(new JTextField(15));
